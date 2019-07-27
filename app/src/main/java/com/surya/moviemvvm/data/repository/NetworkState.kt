@@ -25,7 +25,7 @@ class NetworkState(
             LOADED = NetworkState(Status.SUCCESS,"Success")
             LOADING = NetworkState(Status.RUNNING,"Running")
             ERROR = NetworkState(Status.FAILED,"Wow something went wrong")
-            ENDOFLIST = NetworkState(Status.ENDOFLIST,"You have reach the limit")
+            ENDOFLIST = NetworkState(Status.FAILED,"You have reach the limit")
         }
     }
 

@@ -23,7 +23,6 @@ class MovieDataSource(
     val networkState : MutableLiveData<NetworkState> = MutableLiveData()
 
 
-
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Movie>) {
         networkState.postValue(NetworkState.LOADING)
 
@@ -54,10 +53,12 @@ class MovieDataSource(
                         if(it.totalPages >= params.key){
                             callback.onResult(it.movieList,params.key+1)
                             networkState.postValue(NetworkState.LOADED)
+                        }else{
+                            networkState.postValue(NetworkState.ENDOFLIST)
                         }
                     },
                     {
-                        networkState.postValue(NetworkState.ENDOFLIST)
+                        networkState.postValue(NetworkState.ERROR)
                         Log.e("MovieData", it.message)
                     }
                 )
